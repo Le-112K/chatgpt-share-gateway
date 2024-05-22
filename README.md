@@ -43,10 +43,10 @@ AUTH_KEY : 网关访问秘钥，填free，则忽视鉴权，开启裸奔模式
 GATEWAY_ENABLE_PROXY: false
 #后端计算sentinel token 默认为false，支持热更新，true则支持api模式
 BackendGenSentinel: true
-LICENCE : 授权码，联系客服获取 vx：xxxxxxxhang（请备注网关）
+LICENCE : 授权码，
 AUTH_KEY_HEADER ：header中秘钥key名称，默认为AuthKey，**share网关不要配置该值**，非share网关可自行配置
 ```
-
+联系客服获取授权码：[@sansui_qaq](https://t.me/sansui_qaq)
 #### 监控说明
 基于uptime-kuma监控，https://github.com/louislam/uptime-kuma
 如图配置即可
