@@ -21,7 +21,7 @@ curl -sSfL -o gateway-node-quick-install.sh https://raw.githubusercontent.com/wm
 
 ```
 ##### 安装说明
-AuthKey : 接口访问秘钥，对应share配置中的AuthKey，填写free为裸奔模式，忽略鉴权
+AuthKey : 接口访问秘钥，对应share配置中的AuthKey，填写free为裸奔模式，忽略鉴权，xyhelper的项目必须填写free
 
 Licence : 授权码，联系客服获取，需提供主节点IP
 
