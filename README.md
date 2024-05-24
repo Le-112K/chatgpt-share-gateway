@@ -45,15 +45,6 @@ LICENCE : 授权码，
 AUTH_KEY_HEADER ：header中秘钥key名称，默认为AuthKey，**share网关不要配置该值**，非share网关可自行配置
 ```
 联系客服获取授权码：[@gptsahare](https://t.me/gptsahare)
-#### 监控说明
-基于uptime-kuma监控，https://github.com/louislam/uptime-kuma
-如图配置即可
-<img width="700" alt="image" src="https://github.com/wm-chatgpt/chatgpt-gateway/assets/20039029/1d8c99df-01c9-4540-99f4-cc894799dc75">
-
-* http://网关地址/gateway/ping
-* json查询方式 关键词：forbiddenIps 期望值：none
-* header增加AUTH_KEY {"authkey":"你的key"}
-
 
 ### 负载节点
 
@@ -66,6 +57,11 @@ curl -sSfL -o proxy-node-quick-install.sh https://raw.githubusercontent.com/wm-c
 安装完成后会打印代理节点地址，复制留存
 
 检查网关代理是否启动成功，`curl -x socks5://代理节点地址 myip.ipip.net`
+```
+示例：
+PROXY_URL :
+  - socks5://代理节点地址
+```
 
 编辑主节点机器 `安装目录下的config.yaml`，将代理地址填入配置文件，该文件热更新，无需重启容器，形如：
 
