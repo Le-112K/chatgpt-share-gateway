@@ -7,8 +7,7 @@
 
 如不想购买vps，使用动态住宅ip也可，推荐一个厂商：[https://www.ipwo.net](https://www.ipwo.net/?pl=huasheng)
 
-注意：：**网关支持转API，详情联系tg:[@sansui_qaq](https://t.me/sansui_qaq)**
-
+注意：：**网关支持转API，详情联系tg:[@gptsahare](https://t.me/gptsahare)**
 
 ## 部署流程
 
@@ -45,7 +44,7 @@ BackendGenSentinel: true
 LICENCE : 授权码，
 AUTH_KEY_HEADER ：header中秘钥key名称，默认为AuthKey，**share网关不要配置该值**，非share网关可自行配置
 ```
-联系客服获取授权码：[@sansui_qaq](https://t.me/sansui_qaq)
+联系客服获取授权码：[@gptsahare](https://t.me/gptsahare)
 #### 监控说明
 基于uptime-kuma监控，https://github.com/louislam/uptime-kuma
 如图配置即可
