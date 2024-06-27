@@ -33,20 +33,37 @@ AUTHKEY: "你配置的值"
 #### 配置项说明
 配置文件目录`/root/chatgpt-gateway-node/config.yaml`
 ```
-# 代理节点地址，默认无代理  
+LICENCE : 授权码，
+
+# 代理节点地址，默认无代理，v4和v6均可
 PROXY_URL :
-  - socks5://xx:yy@111.222.333.444:8443 
+  - socks5://xx:yy@111.222.333.444:8443
+
+# arkose代理节点地址，要求必须为ipv4，默认读PROXY_URL，2024年06月20日更新  
+ARK_PROXY_URL:
+  - socks5://xx:yy@111.222.333.444:8443
+
+# 管理后台密码
+WEB_PASSWORD: 123789
+
 AUTH_KEY : 网关访问秘钥，填free，则忽视鉴权，开启裸奔模式
-#网关节点参与代理，默认不参与，不支持热更新
-GATEWAY_ENABLE_PROXY: false
+
+#网关节点参与代理，默认参与，不支持热更新
+GATEWAY_ENABLE_PROXY: true
+
 #后端计算sentinel token 默认为false，支持热更新，true则支持api模式
 BackendGenSentinel: true
-LICENCE : 授权码，
+
 AUTH_KEY_HEADER ：header中秘钥key名称，默认为AuthKey，**share网关不要配置该值**，非share网关可自行配置
+
+# POW计算节点地址，分布式计算pow，节点安装见下方
+POW_URL_LIST:
+  - "http://ip:8900"
 ```
 联系客服获取授权码：[@gptsahare](https://t.me/gptsahare)
 
-### 负载节点
+
+### 代理负载节点
 
 执行一键部署脚本
 ```
@@ -59,13 +76,41 @@ curl -sSfL -o proxy-node-quick-install.sh https://raw.githubusercontent.com/wm-c
 检查网关代理是否启动成功，`curl -x socks5://代理节点地址 myip.ipip.net`
 
 编辑主节点机器 `安装目录下的config.yaml`，将代理地址填入配置文件，该文件热更新，无需重启容器，形如：
-```
-示例：
-PROXY_URL :
-  - socks5://代理节点地址
-```
+
 <img width="645" alt="image" src="https://github.com/wm-chatgpt/chatgpt-gateway/assets/20039029/64c6ab2d-d42b-45ec-b4c9-6cef9ac47121">
 
+### POW负载节点
 
+docker-compose.yml
+
+```
+version: '3.4'
+
+services:
+  wm-pow:
+    image: hanglegehang/wm-pow:latest
+    restart: always
+    ports:
+      - "8900:8900"
+    volumes:
+      - ./data:/data
+    environment:
+      - MaxPowThread=6
+      - GIN_MODE=release
+      - LOG_LEVEL=info
+      - TZ=Asia/Shanghai
+    labels:
+      - "com.centurylinklabs.watchtower.scope=wm-pow"
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --scope wm-pow --cleanup --interval 600
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+    labels:
+      - "com.centurylinklabs.watchtower.scope=wm-pow"
+```
 
 
