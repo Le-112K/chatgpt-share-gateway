@@ -16,7 +16,7 @@
 执行一键部署脚本
 
 ```
-bash <(curl -sL https://chat-free.cn/gateway-node-install.sh)
+bash <(curl -sL https://www.chat-free.cn/gateway-node-quick-install.sh)
 ```
 ##### 安装说明
 AuthKey : 接口访问秘钥，对应share配置中的AuthKey，填写free为裸奔模式，忽略鉴权，xyhelper的项目必须填写free
